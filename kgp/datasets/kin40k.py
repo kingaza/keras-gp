@@ -4,6 +4,7 @@ Interface for kin40k UCI dataset.
 import os
 import sys
 import numpy as np
+import warnings
 
 
 def load_data(start=0., stop=100., verbose=1):
@@ -16,10 +17,11 @@ def load_data(start=0., stop=100., verbose=1):
         verbose : uint (default: 1)
     """
     if 'DATA_PATH' not in os.environ:
-        raise Exception("Cannot find DATA_PATH variable in the environment. "
-                        "DATA_PATH should be the folder that contains "
-                        "`kin40k/` directory with the data. "
-                        "Please export DATA_PATH before loading the data.")
+        warnings.warn("Cannot find DATA_PATH variable in the environment. "
+                      "Using <current_working_directory>/data/ instead.")
+        DATA_PATH = os.path.join(os.getcwd(), 'data')
+    else:
+        DATA_PATH = os.environ['DATA_PATH']
 
     dataset_path = os.path.join(os.environ['DATA_PATH'],'kin40k','kin40k.npz')
     if not os.path.exists(dataset_path):

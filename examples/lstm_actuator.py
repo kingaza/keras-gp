@@ -45,7 +45,7 @@ def main():
     input_shape = list(data['train'][0].shape[1:])
     output_shape = list(data['train'][1].shape[1:])
     batch_size = 16
-    epochs = 5
+    epochs = 100
 
     nn_params = {
         'H_dim': 32,
@@ -68,7 +68,7 @@ def main():
 
     # Train the model
     history = train(model, data, callbacks=callbacks,
-                    checkpoint='lstm', checkpoint_monitor='val_loss',
+                    checkpoint='lstm_actuator', checkpoint_monitor='val_loss',
                     epochs=epochs, batch_size=batch_size, verbose=2)
 
     # Test the model

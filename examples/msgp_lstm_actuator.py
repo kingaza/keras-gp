@@ -6,6 +6,8 @@ from __future__ import print_function
 import numpy as np
 np.random.seed(42)
 
+from six.moves import xrange
+
 # Keras
 from keras.optimizers import Adagrad, Adam, SGD, RMSprop
 from keras.callbacks import EarlyStopping
@@ -54,7 +56,7 @@ def main():
     nb_outputs = len(data['train'][1])
     gp_input_shape = (1,)
     batch_size = 128
-    epochs = 5
+    epochs = 100
 
     nn_params = {
         'H_dim': 16,

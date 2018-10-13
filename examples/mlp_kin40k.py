@@ -5,6 +5,8 @@ Reference: https://arxiv.org/abs/1511.02222
 """
 from __future__ import print_function
 
+import os
+
 import numpy as np
 np.random.seed(42)
 
@@ -74,7 +76,10 @@ def main():
     # Construct & compile the model
     model = assemble_mlp(input_shape, output_shape)
     model.compile(optimizer=Adam(1e-4), loss='mse')
-    model.load_weights('checkpoints/mlp_kin40k.h5', by_name=True)
+
+    # Load saved weights (if exist)
+    if os.path.isfile('checkpoints/mlp_kin40k.h5'):
+        model.load_weights('checkpoints/mlp_kin40k.h5', by_name=True)    
 
     # Callbacks
     # callbacks = [
