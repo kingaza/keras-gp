@@ -1,10 +1,16 @@
 # Misc
 sync
 .sync-exclude
+.vscode/*
 
 # Project specific
 /**/checkpoints/*
 /**/plots/*
+/**/logs/*
+
+# respiratory data
+/**/workspace/data/*.npy
+/**/workspace/resp_data/
 
 # Octave workspace
 /**/octave-workspace
